@@ -1,0 +1,14 @@
+{
+  "name": "state-based-lww-element-graph",
+  "version": "1.0.0",
+  "description": "Implement a state-based LWW-Element-Graph",
+  "main": "lww.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "Sha Cheng",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
