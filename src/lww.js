@@ -97,7 +97,7 @@ class Lww {
 		return connected;
 	};
 
-	merge = (replica) => {};
+	// merge = (replica) => {};
 }
 
 module.exports = Lww;

@@ -1,4 +1,4 @@
-const { expect } = require('@jest/globals');
+const { it, expect } = require('@jest/globals');
 const Lww = require('../src/lww');
 
 let lww;
@@ -89,6 +89,35 @@ it('lookup edge is false after edge removed', () => {
 	const mockDate = mockDateTime(1621930691555);
 	lww.removeEdge([1, 2]);
 	expect(lww.lookupEdge([1, 2])).toBe(false);
+});
+
+it('cannot remove vertex if it is used in edge', () => {
+	lww.addVertex(1);
+	lww.addVertex(2);
+	lww.addEdge(1, 2);
+	lww.removeVertex(1);
+	expect(lww.vertexRemoved[1]).toBe(undefined);
+});
+
+it('get connected vertices for a vertice', () => {
+	lww.addVertex(1);
+	lww.addVertex(2);
+	lww.addEdge(1, 2);
+	expect(lww.connectedVertice(1)).toEqual(['2']);
+	expect(lww.connectedVertice(2)).toEqual(['1']);
+});
+
+it('vertex not in edge', () => {
+	lww.addVertex(1);
+	expect(lww.vertexInEdge(1)).toEqual(false);
+});
+
+it('vertex in edge', () => {
+	lww.addVertex(1);
+	lww.addVertex(2);
+	lww.addEdge(1, 2);
+	expect(lww.vertexInEdge(1)).toEqual(true);
+	expect(lww.vertexInEdge(2)).toEqual(true);
 });
 
 const mockDateTime = (mockDT) => {
