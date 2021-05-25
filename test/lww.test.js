@@ -1,4 +1,3 @@
-const { it, expect } = require('@jest/globals');
 const Lww = require('../src/lww');
 
 let lww;
@@ -102,9 +101,11 @@ it('cannot remove vertex if it is used in edge', () => {
 it('get connected vertices for a vertice', () => {
 	lww.addVertex(1);
 	lww.addVertex(2);
+	lww.addVertex(3);
 	lww.addEdge(1, 2);
+	lww.addEdge(2, 3);
 	expect(lww.connectedVertice(1)).toEqual(['2']);
-	expect(lww.connectedVertice(2)).toEqual(['1']);
+	expect(lww.connectedVertice(2)).toEqual(['1', '3']);
 });
 
 it('vertex not in edge', () => {
@@ -118,6 +119,58 @@ it('vertex in edge', () => {
 	lww.addEdge(1, 2);
 	expect(lww.vertexInEdge(1)).toEqual(true);
 	expect(lww.vertexInEdge(2)).toEqual(true);
+});
+
+it('merge payload', () => {
+	set1 = { 1: '2021-05-25T08:18:11.554Z', 2: '2021-05-25T08:18:11.554Z' };
+	set2 = { 2: '2021-05-25T08:18:11.556Z', 3: '2021-05-25T08:18:11.556Z' };
+	mergedSet = {
+		1: '2021-05-25T08:18:11.554Z',
+		2: '2021-05-25T08:18:11.556Z',
+		3: '2021-05-25T08:18:11.556Z',
+	};
+	lww.mergePayload(set1, set2);
+	expect(set1).toEqual(mergedSet);
+});
+
+it('merge lww with other', () => {
+	// lww
+	const mockDate1 = mockDateTime(1621930691554);
+	lww.addVertex(1);
+	lww.addVertex(2);
+	lww.addVertex(3);
+	lww.addEdge(1, 2);
+	lww.addEdge(2, 3);
+	const mockDate2 = mockDateTime(1621930691555);
+	lww.removeEdge([2, 3]);
+	const mockDate3 = mockDateTime(1621930691556);
+	lww.removeVertex(3);
+	// other
+	const other = new Lww();
+	const mockDate4 = mockDateTime(1621930691554);
+	other.addVertex(4);
+	other.addVertex(5);
+	other.addEdge(4, 5);
+	// merge
+	lww.merge(other);
+	// vertexAdded after merged
+	expect(lww.vertexAdded).toEqual({
+		1: mockDate1,
+		2: mockDate1,
+		3: mockDate1,
+		4: mockDate4,
+		5: mockDate4,
+	});
+	// vertexRemoved after merged
+	expect(lww.vertexRemoved).toEqual({ 3: mockDate3 });
+	// edgeAdded after merged
+	expect(lww.edgeAdded).toEqual({
+		'1,2': mockDate1,
+		'2,3': mockDate1,
+		'4,5': mockDate4,
+	});
+	// edgeRemoved after merged
+	expect(lww.edgeRemoved).toEqual({ '2,3': mockDate2 });
 });
 
 const mockDateTime = (mockDT) => {

@@ -1,4 +1,3 @@
-// 2P2P-Graph
 class Lww {
 	constructor() {
 		this.vertexAdded = {};
@@ -15,14 +14,10 @@ class Lww {
 	// vertex in graph
 	// if in vertexAdded and not in vertexRemoved or in vertexRemoved with an earlier timestamp
 	lookupVertex = (vertex) => {
-		if (
-			this.vertexAdded[vertex] &&
-			(!this.vertexRemoved[vertex] || this.vertexAdded[vertex] > this.vertexRemoved[vertex])
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.vertexAdded[vertex] &&
+			(!this.vertexRemoved[vertex] || this.vertexAdded[vertex] >= this.vertexRemoved[vertex])
+			? true
+			: false;
 	};
 
 	// if vertex in graph and not used in edge, add in vertexRemoved with timestamp
@@ -60,16 +55,12 @@ class Lww {
 	// and edge in edgeAdded
 	// and not in edgeRemoved or in edgeRemoved with an earlier timestamp than edgeAdded
 	lookupEdge = (edge) => {
-		if (
-			this.lookupVertex(edge[0]) &&
+		return this.lookupVertex(edge[0]) &&
 			this.lookupVertex(edge[1]) &&
 			this.edgeAdded[edge] &&
-			(!this.edgeRemoved[edge] || this.edgeAdded[edge] > this.edgeRemoved[edge])
-		) {
-			return true;
-		} else {
-			return false;
-		}
+			(!this.edgeRemoved[edge] || this.edgeAdded[edge] >= this.edgeRemoved[edge])
+			? true
+			: false;
 	};
 
 	// if edge in graph, add in edgeRemoved with timestamp
@@ -97,7 +88,19 @@ class Lww {
 		return connected;
 	};
 
-	// merge = (replica) => {};
+	merge = (other) => {
+		this.mergePayload(this.vertexAdded, other.vertexAdded);
+		this.mergePayload(this.vertexRemoved, other.vertexRemoved);
+		this.mergePayload(this.edgeAdded, other.edgeAdded);
+		this.mergePayload(this.edgeRemoved, other.edgeRemoved);
+	};
+
+	// merge set2 to set1
+	mergePayload = (set1, set2) => {
+		for (let element in set2) {
+			set1[element] = set1[element] && set1[element] >= set2[element] ? set1[element] : set2[element];
+		}
+	};
 }
 
 module.exports = Lww;
