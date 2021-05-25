@@ -1,3 +1,4 @@
+// 2P2P-Graph
 class Lww {
 	constructor() {
 		this.vertexAdded = {};
@@ -29,7 +30,7 @@ class Lww {
 		if (this.lookupVertex(vertex) && !this.vertexInEdge(vertex)) {
 			this.vertexRemoved[vertex] = new Date();
 		} else {
-			console.error('Cannot remove vertex ', vertex);
+			console.log('Cannot remove vertex ', vertex);
 		}
 	};
 
@@ -50,7 +51,7 @@ class Lww {
 		if (this.lookupVertex(vertex1) && this.lookupVertex(vertex2)) {
 			this.edgeAdded[[vertex1, vertex2]] = new Date();
 		} else {
-			console.error('Cannot add edge ', [vertex1, vertex2]);
+			console.log('Cannot add edge ', [vertex1, vertex2]);
 		}
 	};
 
@@ -76,7 +77,7 @@ class Lww {
 		if (this.lookupEdge(edge)) {
 			this.edgeRemoved[edge] = new Date();
 		} else {
-			console.error('Cannot remove edge ', edge);
+			console.log('Cannot remove edge ', edge);
 		}
 	};
 

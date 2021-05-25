@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1621940940421" clover="3.2.0">
+  <project timestamp="1621940940421" name="All files">
+    <metrics statements="44" coveredstatements="32" conditionals="33" coveredconditionals="22" methods="10" coveredmethods="8" elements="87" coveredelements="62" complexity="0" loc="44" ncloc="44" packages="1" files="1" classes="1"/>
+    <file name="lww.js" path="/Users/shacheng/Documents/Job/GoodNotes/State-Based-LWW-Element-Graph/src/lww.js">
+      <metrics statements="44" coveredstatements="32" conditionals="33" coveredconditionals="22" methods="10" coveredmethods="8"/>
+      <line num="4" count="13" type="stmt"/>
+      <line num="5" count="13" type="stmt"/>
+      <line num="6" count="13" type="stmt"/>
+      <line num="7" count="13" type="stmt"/>
+      <line num="11" count="13" type="stmt"/>
+      <line num="12" count="12" type="stmt"/>
+      <line num="17" count="13" type="stmt"/>
+      <line num="18" count="25" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="19" type="stmt"/>
+      <line num="24" count="6" type="stmt"/>
+      <line num="29" count="13" type="stmt"/>
+      <line num="30" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="31" count="2" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="39" count="13" type="stmt"/>
+      <line num="40" count="2" type="stmt"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="42" count="0" type="cond" truecount="0" falsecount="5"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="46" count="2" type="stmt"/>
+      <line num="50" count="13" type="stmt"/>
+      <line num="51" count="5" type="cond" truecount="4" falsecount="0"/>
+      <line num="52" count="4" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="62" count="13" type="stmt"/>
+      <line num="63" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="69" count="3" type="stmt"/>
+      <line num="71" count="3" type="stmt"/>
+      <line num="76" count="13" type="stmt"/>
+      <line num="77" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="78" count="2" type="stmt"/>
+      <line num="80" count="1" type="stmt"/>
+      <line num="85" count="13" type="stmt"/>
+      <line num="86" count="0" type="stmt"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="88" count="0" type="stmt"/>
+      <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="91" count="0" type="stmt"/>
+      <line num="92" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="93" count="0" type="stmt"/>
+      <line num="97" count="0" type="stmt"/>
+      <line num="100" count="13" type="stmt"/>
+      <line num="103" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

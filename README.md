@@ -10,3 +10,5 @@ Conflict-Free Replicated Data Types (CRDTs) are data structures that power real-
 -   query for all vertices connected to a vertex
 -   find any path between two vertices
 -   merge graph/replica
+
+Timestamp precision: milliseconds
