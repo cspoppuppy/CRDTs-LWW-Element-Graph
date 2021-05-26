@@ -1,23 +1,31 @@
 # Conflict-Free Replicated Data Types (CRDTs)
 
-Conflict-Free Replicated Data Types (CRDTs) are data structures that power real-time collaborative applications in distributed systems. CRDTs can be replicated across systems, they can be updated independently and concurrently without coordination between the replicas, and it is always mathematically possible to resolve inconsistencies that might result.
-
 #### A state-based LWW-Element-Graph
 
--   [x] add a vertex/edge: lww.js - addVertex, addEdge
--   [x] remove a vertex/edge: lww.js - removeVertex, removeEdge
--   [x] check if a vertex is in the graph: lww.js - lookupVertex
--   [x] query for all vertices connected to a vertex: lww.js - connectedVertice
--   [x] find any path between two vertices: lww.js - findOnePath
--   [x] merge graph/replica: lww.js - merge
+-   [x] add a vertex/edge: _lww.js - addVertex, addEdge_
+-   [x] remove a vertex/edge: _lww.js - removeVertex, removeEdge_
+-   [x] check if a vertex is in the graph: _lww.js - lookupVertex_
+-   [x] query for all vertices connected to a vertex: _lww.js - connectedVertice_
+-   [x] find any path between two vertices: _lww.js - findOnePath_
+-   [x] merge graph/replica: _lww.js - merge_
 
-#### How to use / test
+#### Overview
 
-Prerequisite: Node.js
+##### Directory src
 
--   Code in lww.js
--   Test: command line `npm run test`
+-   lww.js: new data type with all functions
+-   graph.js: display graph in key (vertex) value (connected vertices in array) pairs
 
-#### Concerns
+##### Directory test
 
--   Timestamp precision: milliseconds
+-   lww.test.js: tests for lww.js, mocked timestamp
+-   graph.test.js: tests for graph.js, mocked lww.js and timestamp
+
+##### How to test
+
+-   Command line: `npm run test`
+
+##### Further work
+
+-   Timestamp precision: currently milliseconds, can be more precise
+-   Branch test coverage not 100%, edge cases not all covered

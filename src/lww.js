@@ -88,6 +88,8 @@ class Lww {
 		return connected;
 	}
 
+	// first path between two vertices
+	// empty array if none
 	findOnePath(source, target) {
 		const path = [];
 

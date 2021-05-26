@@ -6,119 +6,119 @@ beforeEach(() => {
 });
 
 it('adds vertex to vertexAdded with current timestamp', () => {
-	const mockDate = mockDateTime(1621930691554);
-	lww.addVertex(1);
-	expect(lww.getVertexAdded()[1]).toEqual(mockDate);
+	const mockDate = mockDateTime(1622061476374);
+	lww.addVertex('1');
+	expect(lww.getVertexAdded()['1']).toEqual(mockDate);
 });
 
 it('lookup vertex is false when vertex not exists', () => {
-	expect(lww.lookupVertex(1)).toBe(false);
+	expect(lww.lookupVertex('1')).toBe(false);
 });
 
 it('lookup vertex is true after vertex added', () => {
-	lww.addVertex(1);
-	expect(lww.lookupVertex(1)).toBe(true);
+	lww.addVertex('1');
+	expect(lww.lookupVertex('1')).toBe(true);
 });
 
 it('cannot remove vertex when vertex not exists', () => {
-	lww.removeVertex(1);
-	expect(lww.getVertexRemoved()[1]).toBe(undefined);
+	lww.removeVertex('1');
+	expect(lww.getVertexRemoved()['1']).toBe(undefined);
 });
 
 it('removing existing vertex adds it to vertexRemoved with current timestamp', () => {
-	mockDateTime(1621930691554);
-	lww.addVertex(1);
-	const mockDate = mockDateTime(1621930691555);
-	lww.removeVertex(1);
-	expect(lww.getVertexRemoved()[1]).toEqual(mockDate);
+	mockDateTime(1622061476374);
+	lww.addVertex('1');
+	const mockDate = mockDateTime(1622061476375);
+	lww.removeVertex('1');
+	expect(lww.getVertexRemoved()['1']).toEqual(mockDate);
 });
 
 it('lookup vertex is false after vertex removed', () => {
-	mockDateTime(1621930691554);
+	mockDateTime(1622061476374);
 	lww.addVertex(1);
-	mockDateTime(1621930691555);
-	lww.removeVertex(1);
-	expect(lww.lookupVertex(1)).toBe(false);
+	mockDateTime(1622061476375);
+	lww.removeVertex('1');
+	expect(lww.lookupVertex('1')).toBe(false);
 });
 
 it('cannot add edge if vertices not exists', () => {
-	lww.addEdge(1, 2);
-	expect(lww.getEdgeAdded()[[1, 2]]).toBe(undefined);
+	lww.addEdge('1', '2');
+	expect(lww.getEdgeAdded()[['1', '2']]).toBe(undefined);
 });
 
 it('adds edge to edgeAdded with current timestamp', () => {
-	const mockDate = mockDateTime(1621930691554);
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	expect(lww.getEdgeAdded()[[1, 2]]).toEqual(mockDate);
+	const mockDate = mockDateTime(1622061476374);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	expect(lww.getEdgeAdded()[['1', '2']]).toEqual(mockDate);
 });
 
 it('lookup edge is false when edge not exists', () => {
-	expect(lww.lookupEdge([1, 2])).toBe(false);
+	expect(lww.lookupEdge(['1', '2'])).toBe(false);
 });
 
 it('lookup edge is true after edge added', () => {
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	expect(lww.lookupEdge([1, 2])).toBe(true);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	expect(lww.lookupEdge(['1', '2'])).toBe(true);
 });
 
 it('cannot remove edge when edge not exists', () => {
-	lww.removeEdge([1, 2]);
-	expect(lww.getEdgeRemoved()[[1, 2]]).toBe(undefined);
+	lww.removeEdge(['1', '2']);
+	expect(lww.getEdgeRemoved()[['1', '2']]).toBe(undefined);
 });
 
 it('removing existing edge adds it to edgeRemoved with a timestamp', () => {
-	mockDateTime(1621930691554);
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	const mockDate = mockDateTime(1621930691555);
-	lww.removeEdge([1, 2]);
-	expect(lww.getEdgeRemoved()[[1, 2]]).toEqual(mockDate);
+	mockDateTime(1622061476374);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	const mockDate = mockDateTime(1622061476375);
+	lww.removeEdge(['1', '2']);
+	expect(lww.getEdgeRemoved()[['1', '2']]).toEqual(mockDate);
 });
 
 it('lookup edge is false after edge removed', () => {
-	mockDateTime(1621930691554);
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	mockDateTime(1621930691555);
-	lww.removeEdge([1, 2]);
-	expect(lww.lookupEdge([1, 2])).toBe(false);
+	mockDateTime(1622061476374);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	mockDateTime(1622061476375);
+	lww.removeEdge(['1', '2']);
+	expect(lww.lookupEdge(['1', '2'])).toBe(false);
 });
 
 it('cannot remove vertex if it is used in edge', () => {
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	lww.removeVertex(1);
-	expect(lww.getVertexRemoved()[1]).toBe(undefined);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	lww.removeVertex('1');
+	expect(lww.getVertexRemoved()['1']).toBe(undefined);
 });
 
 it('get connected vertices for a vertice', () => {
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addVertex(3);
-	lww.addEdge(1, 2);
-	lww.addEdge(2, 3);
-	expect(lww.connectedVertice(1)).toEqual(['2']);
-	expect(lww.connectedVertice(2)).toEqual(['1', '3']);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addVertex('3');
+	lww.addEdge('1', '2');
+	lww.addEdge('2', '3');
+	expect(lww.connectedVertice('1')).toEqual(['2']);
+	expect(lww.connectedVertice('2')).toEqual(['1', '3']);
 });
 
 it('vertex not in edge', () => {
-	lww.addVertex(1);
-	expect(lww.vertexInEdge(1)).toEqual(false);
+	lww.addVertex('1');
+	expect(lww.vertexInEdge('1')).toEqual(false);
 });
 
 it('vertex in edge', () => {
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addEdge(1, 2);
-	expect(lww.vertexInEdge(1)).toEqual(true);
-	expect(lww.vertexInEdge(2)).toEqual(true);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	expect(lww.vertexInEdge('1')).toEqual(true);
+	expect(lww.vertexInEdge('2')).toEqual(true);
 });
 
 it('empty path if vertices not connected', () => {
@@ -130,48 +130,48 @@ it('find path for vertice connect to itself', () => {
 	expect(lww.findOnePath('1', '1')).toEqual(['1']);
 });
 
-it('find any path between two vertices', () => {
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addVertex(3);
-	lww.addVertex(4);
-	lww.addEdge(1, 2);
-	lww.addEdge(1, 4);
-	lww.addEdge(4, 3);
+it('return first path between two vertices', () => {
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addVertex('3');
+	lww.addVertex('4');
+	lww.addEdge('1', '2');
+	lww.addEdge('1', '4');
+	lww.addEdge('4', '3');
 	console.log(lww.findOnePath('1', '3'));
 	expect(lww.findOnePath('1', '3')).toEqual(['1', '4', '3']);
 });
 
-it('merge payload', () => {
-	const set1 = { 1: '2021-05-25T08:18:11.554Z', 2: '2021-05-25T08:18:11.554Z' };
-	const set2 = { 2: '2021-05-25T08:18:11.556Z', 3: '2021-05-25T08:18:11.556Z' };
+it('merge sets (either vertexAdded, vertexRemoved, edgeAdded, edgeRemoved)', () => {
+	const set1 = { 1: '2021-05-26T20:40:18.534Z', 2: '2021-05-26T20:40:18.534Z' };
+	const set2 = { 2: '2021-05-26T20:40:18.536Z', 3: '2021-05-26T20:40:18.536Z' };
 	const mergedSet = {
-		1: '2021-05-25T08:18:11.554Z',
-		2: '2021-05-25T08:18:11.556Z',
-		3: '2021-05-25T08:18:11.556Z',
+		1: '2021-05-26T20:40:18.534Z',
+		2: '2021-05-26T20:40:18.536Z',
+		3: '2021-05-26T20:40:18.536Z',
 	};
 	lww.mergeSets(set1, set2);
 	expect(set1).toEqual(mergedSet);
 });
 
-it('merge lww with other', () => {
+it('merge lww with other graph/replica', () => {
 	// lww
-	const mockDate1 = mockDateTime(1621930691554);
-	lww.addVertex(1);
-	lww.addVertex(2);
-	lww.addVertex(3);
-	lww.addEdge(1, 2);
-	lww.addEdge(2, 3);
-	const mockDate2 = mockDateTime(1621930691555);
-	lww.removeEdge([2, 3]);
-	const mockDate3 = mockDateTime(1621930691556);
-	lww.removeVertex(3);
+	const mockDate1 = mockDateTime(1622061476374);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addVertex('3');
+	lww.addEdge('1', '2');
+	lww.addEdge('2', '3');
+	const mockDate2 = mockDateTime(1622061476375);
+	lww.removeEdge(['2', '3']);
+	const mockDate3 = mockDateTime(1622061476376);
+	lww.removeVertex('3');
 	// other
 	const other = new Lww();
-	const mockDate4 = mockDateTime(1621930691554);
-	other.addVertex(4);
-	other.addVertex(5);
-	other.addEdge(4, 5);
+	const mockDate4 = mockDateTime(1622061476374);
+	other.addVertex('4');
+	other.addVertex('5');
+	other.addEdge('4', '5');
 	// merge
 	lww.merge(other);
 	// vertexAdded after merged

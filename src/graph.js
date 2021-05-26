@@ -1,50 +1,19 @@
 const Lww = require('./lww');
 
+// display graph in key value pair: vertex as key, connected vertices in an array as value
 class Graph {
-	constructor() {
-		this.lww = new Lww();
+	constructor(lww = new Lww()) {
+		this.lww = lww;
 	}
 
-	addVertex(vertex) {
-		this.lww.addVertex(vertex);
-	}
-
-	removeVertex(vertex) {
-		this.lww.removeVertex(vertex);
-	}
-
-	addEdge(vertex1, vertex2) {
-		this.lww.addEdge(vertex1, vertex2);
-	}
-
-	removeEdge(edge) {
-		this.lww.removeEdge(edge);
-	}
-
-	vertexInGraph(vertex) {
-		return this.lww.lookupVertex(vertex);
-	}
-
-	connectedVertice(vertex) {
-		return this.lww.connectedVertice(vertex);
-	}
-
-	merge(otherGraph) {
-		this.lww.merge(otherGraph.lww);
-	}
-
-	getGraph() {
+	display() {
 		const graph = {};
 		for (let vertex in this.lww.getVertexAdded()) {
-			if (this.vertexInGraph(vertex)) {
-				graph[vertex] = this.connectedVertice(vertex);
+			if (this.lww.lookupVertex(vertex)) {
+				graph[vertex] = this.lww.connectedVertice(vertex);
 			}
 		}
 		return Object.assign({}, graph);
-	}
-
-	getPath(vertex1, vertex2) {
-		return this.lww.findOnePath(vertex1, vertex2);
 	}
 }
 
