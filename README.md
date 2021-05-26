@@ -32,4 +32,4 @@
 ##### Further work
 
 -   Timestamp precision: currently milliseconds, can be more precise
--   Branch test coverage not 100%, edge cases not all covered
+-   Branch test coverage not 100%
