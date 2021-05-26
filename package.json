@@ -4,11 +4,13 @@
   "description": "Implement a state-based LWW-Element-Graph",
   "main": "lww.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "eslint ./"
   },
   "author": "Sha Cheng",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^7.27.0",
     "jest": "^26.6.3"
   }
 }

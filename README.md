@@ -8,7 +8,7 @@ Conflict-Free Replicated Data Types (CRDTs) are data structures that power real-
 -   [x] remove a vertex/edge: lww.js - removeVertex, removeEdge
 -   [x] check if a vertex is in the graph: lww.js - lookupVertex
 -   [x] query for all vertices connected to a vertex: lww.js - connectedVertice
--   [] find any path between two vertices
+-   [x] find any path between two vertices: lww.js - findOnePath
 -   [x] merge graph/replica: lww.js - merge
 
 #### How to use / test
