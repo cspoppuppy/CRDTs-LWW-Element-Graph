@@ -11,6 +11,10 @@
 
 #### Overview
 
+-   Reference: [A comprehensive study of Convergent and Commutative
+    Replicated Data Types](https://hal.inria.fr/inria-00555588/PDF/techreport.pdf)
+-   Use Jest for testing, and Eslint for code check
+
 ##### Directory src
 
 -   lww.js: new data type with all functions
@@ -23,7 +27,7 @@
 
 ##### How to test
 
--   Command line: `npm run test`
+-   Command line: `npm install` then `npm run test`
 
 ##### Further work
 
