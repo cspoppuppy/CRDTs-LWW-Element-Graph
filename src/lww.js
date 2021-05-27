@@ -1,3 +1,5 @@
+const { findPathInGraph, mergeSets, displayGraph } = require('./graphUtils');
+
 class Lww {
 	constructor() {
 		this._vertexAdded = {};
@@ -88,75 +90,15 @@ class Lww {
 		return connected;
 	}
 
-	// first path between two vertices
-	// empty array if none
-	findOnePath(source, target) {
-		const path = [];
-
-		if (source === target) {
-			path.push(source);
-			return path;
-		}
-
-		const visited = new Set();
-
-		const connectedVertice = [];
-		this._moveForward(source, path, connectedVertice, visited);
-
-		while (path.length > 0) {
-			const connected = connectedVertice.pop();
-
-			if (connected && connected.length) {
-				const nextVertex = connected.shift();
-				connectedVertice.push(connected);
-
-				if (this.lookupVertex(nextVertex)) {
-					this._moveForward(nextVertex, path, connectedVertice, visited);
-				}
-			} else {
-				connectedVertice.push(connected);
-				this._moveBack(path, connectedVertice, visited);
-				continue;
-			}
-
-			if (path[path.length - 1] === target) {
-				return path;
-			}
-		}
-		return path;
-	}
-
-	_moveForward(vertex, path, connectedVertice, visited) {
-		if (vertex) {
-			path.push(vertex);
-			visited.add(vertex);
-
-			const connected = this.connectedVertice(vertex).filter((v) => !visited.has(v));
-			connectedVertice.push(connected);
-		}
-	}
-
-	_moveBack(path, connectedVertice, visited) {
-		const removedVertex = path.pop();
-
-		if (removedVertex) {
-			visited.delete(removedVertex);
-		}
-		connectedVertice.pop();
+	findOnePath(vertex1, vertex2) {
+		return findPathInGraph(this, vertex1, vertex2);
 	}
 
 	merge(other) {
-		this.mergeSets(this._vertexAdded, other.getVertexAdded());
-		this.mergeSets(this._vertexRemoved, other.getVertexRemoved());
-		this.mergeSets(this._edgeAdded, other.getEdgeAdded());
-		this.mergeSets(this._edgeRemoved, other.getEdgeRemoved());
-	}
-
-	// merge set2 to set1
-	mergeSets(set1, set2) {
-		for (let element in set2) {
-			set1[element] = set1[element] && set1[element] >= set2[element] ? set1[element] : set2[element];
-		}
+		mergeSets(this._vertexAdded, other.getVertexAdded());
+		mergeSets(this._vertexRemoved, other.getVertexRemoved());
+		mergeSets(this._edgeAdded, other.getEdgeAdded());
+		mergeSets(this._edgeRemoved, other.getEdgeRemoved());
 	}
 
 	getVertexAdded() {
@@ -173,6 +115,10 @@ class Lww {
 
 	getEdgeRemoved() {
 		return Object.assign({}, this._edgeRemoved);
+	}
+
+	display() {
+		return displayGraph(this);
 	}
 }
 

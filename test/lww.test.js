@@ -108,6 +108,16 @@ it('get connected vertices for a vertice', () => {
 	expect(lww.connectedVertice('2')).toEqual(['1', '3']);
 });
 
+it('no connected vertices after deleting the only edge connecting other vertex', () => {
+	mockDateTime(1622061476374);
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addEdge('1', '2');
+	mockDateTime(1622061476375);
+	lww.removeEdge(['1', '2']);
+	expect(lww.connectedVertice('1')).toEqual([]);
+});
+
 it('vertex not in edge', () => {
 	lww.addVertex('1');
 	expect(lww.vertexInEdge('1')).toEqual(false);
@@ -138,20 +148,7 @@ it('return first path between two vertices', () => {
 	lww.addEdge('1', '2');
 	lww.addEdge('1', '4');
 	lww.addEdge('4', '3');
-	console.log(lww.findOnePath('1', '3'));
 	expect(lww.findOnePath('1', '3')).toEqual(['1', '4', '3']);
-});
-
-it('merge sets (either vertexAdded, vertexRemoved, edgeAdded, edgeRemoved)', () => {
-	const set1 = { 1: '2021-05-26T20:40:18.534Z', 2: '2021-05-26T20:40:18.534Z' };
-	const set2 = { 2: '2021-05-26T20:40:18.536Z', 3: '2021-05-26T20:40:18.536Z' };
-	const mergedSet = {
-		1: '2021-05-26T20:40:18.534Z',
-		2: '2021-05-26T20:40:18.536Z',
-		3: '2021-05-26T20:40:18.536Z',
-	};
-	lww.mergeSets(set1, set2);
-	expect(set1).toEqual(mergedSet);
 });
 
 it('merge lww with other graph/replica', () => {
@@ -192,6 +189,15 @@ it('merge lww with other graph/replica', () => {
 	});
 	// edgeRemoved after merged
 	expect(lww.getEdgeRemoved()).toEqual({ '2,3': mockDate2 });
+});
+
+it('display graph in key (vertex) value (connected vertices in array) pairs', () => {
+	lww.addVertex('1');
+	lww.addVertex('2');
+	lww.addVertex('3');
+	lww.addEdge('1', '2');
+	lww.addEdge('2', '3');
+	expect(lww.display()).toEqual({ 1: ['2'], 2: ['1', '3'], 3: ['2'] });
 });
 
 const mockDateTime = (mockDT) => {
