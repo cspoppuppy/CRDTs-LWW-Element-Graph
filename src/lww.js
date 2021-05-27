@@ -117,6 +117,7 @@ class Lww {
 		return Object.assign({}, this._edgeRemoved);
 	}
 
+	//display graph in key (vertex) value (connected vertices in array) pairs
 	display() {
 		return displayGraph(this);
 	}

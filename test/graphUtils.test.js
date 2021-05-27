@@ -9,7 +9,7 @@ beforeEach(() => {
 	mockLwwInstance = Lww.mock.instances[0];
 });
 
-it('return first path between two vertices', () => {
+it('return path from 1 to 3 (1 connects to 2 and 4, 4 connects to 3)', () => {
 	mockLwwInstance.connectedVertice
 		.mockReturnValueOnce(['2', '4'])
 		.mockReturnValueOnce(['1'])
@@ -17,12 +17,9 @@ it('return first path between two vertices', () => {
 	expect(findPathInGraph(mockLwwInstance, '1', '3')).toEqual(['1', '4', '3']);
 });
 
-it('return first path between two vertices', () => {
-	mockLwwInstance.connectedVertice
-		.mockReturnValueOnce(['2', '4'])
-		.mockReturnValueOnce(['1'])
-		.mockReturnValue(['1', '3']);
-	expect(findPathInGraph(mockLwwInstance, '1', '1')).toEqual(['1']);
+it('return path from 1 to 3 (not connected, 1 connects to 2 and 4)', () => {
+	mockLwwInstance.connectedVertice.mockReturnValueOnce(['2', '4']).mockReturnValueOnce(['1']).mockReturnValue(['1']);
+	expect(findPathInGraph(mockLwwInstance, '1', '3')).toEqual([]);
 });
 
 it('merge other set into main set', () => {

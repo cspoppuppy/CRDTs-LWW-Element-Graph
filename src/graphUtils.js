@@ -33,6 +33,7 @@ const findPathInGraph = (graph, source, target) => {
 	moveForward(source, path, connectedVertice, visited);
 
 	while (path.length > 0) {
+		console.log(path, connectedVertice, visited);
 		const connected = connectedVertice.pop();
 
 		if (connected && connected.length) {
@@ -57,7 +58,6 @@ const findPathInGraph = (graph, source, target) => {
 
 const mergeSets = (main, other) => {
 	for (let element in other) {
-		console.log(element, other[element], main[element], other[element] > main[element]);
 		main[element] = main[element] && main[element] >= other[element] ? main[element] : other[element];
 	}
 };

@@ -18,12 +18,12 @@
 ##### Directory src
 
 -   lww.js: new data type with all functions
--   graph.js: display graph in key (vertex) value (connected vertices in array) pairs
+-   graphUtils.js: helper functions for lww.js
 
 ##### Directory test
 
 -   lww.test.js: tests for lww.js, mocked timestamp
--   graph.test.js: tests for graph.js, mocked lww.js and timestamp
+-   graphUtils.test.js: tests for graphUtils.js, mocked lww.js and timestamp
 
 ##### How to test
 
@@ -32,4 +32,4 @@
 ##### Further work
 
 -   Timestamp precision: currently milliseconds, can be more precise
--   Branch test coverage not 100%
+-   graphUtils.js test coverage (% Branch only) not 100%
