@@ -18,7 +18,7 @@
 ##### Directory src
 
 -   lww.js: new data type with all functions
--   graphUtils.js: helper functions for lww.js
+-   graphUtils.js: help functions for lww.js
 
 ##### Directory test
 
