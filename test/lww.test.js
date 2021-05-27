@@ -132,12 +132,12 @@ it('vertex in edge', () => {
 });
 
 it('empty path if vertices not connected', () => {
-	expect(lww.findOnePath('1', '2')).toEqual([]);
+	expect(lww.findPath('1', '2')).toEqual([]);
 });
 
 it('find path for vertice connect to itself', () => {
 	lww.addVertex(1);
-	expect(lww.findOnePath('1', '1')).toEqual(['1']);
+	expect(lww.findPath('1', '1')).toEqual(['1']);
 });
 
 it('return first path between two vertices', () => {
@@ -148,7 +148,7 @@ it('return first path between two vertices', () => {
 	lww.addEdge('1', '2');
 	lww.addEdge('1', '4');
 	lww.addEdge('4', '3');
-	expect(lww.findOnePath('1', '3')).toEqual(['1', '4', '3']);
+	expect(lww.findPath('1', '3')).toEqual(['1', '4', '3']);
 });
 
 it('merge lww with other graph/replica', () => {

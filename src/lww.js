@@ -90,7 +90,7 @@ class Lww {
 		return connected;
 	}
 
-	findOnePath(vertex1, vertex2) {
+	findPath(vertex1, vertex2) {
 		return findPathInGraph(this, vertex1, vertex2);
 	}
 

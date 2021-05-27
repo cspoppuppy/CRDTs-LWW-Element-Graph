@@ -33,7 +33,6 @@ const findPathInGraph = (graph, source, target) => {
 	moveForward(source, path, connectedVertice, visited);
 
 	while (path.length > 0) {
-		console.log(path, connectedVertice, visited);
 		const connected = connectedVertice.pop();
 
 		if (connected && connected.length) {
