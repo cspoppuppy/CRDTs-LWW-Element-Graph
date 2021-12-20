@@ -18,6 +18,7 @@ Prerequisite: Node.js
 -   Code in lww.js
 -   Test: command line `npm run test`
 
-#### Concerns
+#### Issues
 
+-   Not track versions of changes
 -   Timestamp precision: milliseconds
